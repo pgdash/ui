@@ -191,7 +191,7 @@ function MetricCard({
 function AlertRow({ alert }: { alert: (typeof recentAlerts)[0] }) {
 	const colorMap = {
 		critical: "bg-destructive/10 text-destructive border-destructive/20",
-		warning: "bg-yellow-500/10 text-yellow-500 border-yellow-500/20",
+		warning: "bg-chart-4/10 text-chart-4 border-chart-4/20",
 		info: "bg-primary/10 text-primary border-primary/20",
 	}
 	return (
@@ -233,7 +233,7 @@ function AppDashboard() {
 						</p>
 					</div>
 					<div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
-						<span className="size-1.5 rounded-full bg-green-500 shadow-[0_0_6px_2px_#22c55e55]" />
+						<span className="size-1.5 rounded-full bg-chart-2" />
 						Connected · Last refresh{" "}
 						<HugeiconsIcon icon={Clock01Icon} size={10} strokeWidth={2} /> just
 						now

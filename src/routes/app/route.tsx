@@ -25,9 +25,10 @@ import {
 	Outlet,
 	useRouterState,
 } from "@tanstack/react-router"
-
+import ThemeToggle from "@/components/ThemeToggle"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import {
 	Sidebar,
@@ -98,107 +99,117 @@ function AppLayout() {
 		allNavItems[0]
 
 	return (
-		<SidebarProvider defaultOpen>
+		<SidebarProvider defaultOpen={false}>
 			<div className="flex h-screen w-full overflow-hidden bg-background">
 				{/* ── Sidebar ── */}
-				<Sidebar collapsible="icon" variant="sidebar">
-					<SidebarHeader className="gap-0 py-3">
-						<div className="flex items-center gap-2.5 px-2">
-							<div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow">
-								<HugeiconsIcon
-									icon={Database01Icon}
-									size={14}
-									strokeWidth={2.5}
-								/>
-							</div>
-							<span className="font-display text-sm font-semibold tracking-tight group-data-[state=collapsed]:hidden">
-								pgdash
-							</span>
-							<Badge
-								variant="secondary"
-								className="ml-auto text-[9px] group-data-[state=collapsed]:hidden"
-							>
-								v0.1
-							</Badge>
-						</div>
+				<Sidebar
+					collapsible="icon"
+					variant="sidebar"
+					className="border-l border-sidebar-border"
+				>
+					<div className="flex flex-col justify-between h-full ">
+						<span>
+							<SidebarHeader className="gap-0 py-3">
+								<div className="flex items-center gap-2.5 ">
+									<div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow">
+										<HugeiconsIcon
+											icon={Database01Icon}
+											size={14}
+											strokeWidth={2.5}
+										/>
+									</div>
+									<span className="font-display text-sm font-semibold tracking-tight group-data-[state=collapsed]:hidden">
+										pgdash
+									</span>
+									<Badge
+										variant="secondary"
+										className="ml-auto text-[9px] group-data-[state=collapsed]:hidden"
+									>
+										v0.1
+									</Badge>
+								</div>
 
-						<Separator className="mt-3 bg-sidebar-border" />
+								<Separator className="mt-3 bg-sidebar-border" />
 
-						{/* DB connection pill */}
-						<div className="mt-2 flex items-center gap-2 rounded-md bg-muted/40 px-2 py-1.5 group-data-[state=collapsed]:hidden">
-							<span className="size-1.5 shrink-0 rounded-full bg-green-500 shadow-[0_0_6px_2px_#22c55e60]" />
-							<div className="min-w-0 flex-1">
-								<p className="truncate text-[10px] font-medium">
-									prod-primary.cluster
-								</p>
-								<p className="text-[9px] text-muted-foreground">
-									PostgreSQL 16
-								</p>
-							</div>
-						</div>
-					</SidebarHeader>
+								{/* DB connection pill */}
+								<div className="mt-2 flex items-center gap-2 rounded-md bg-muted/40 px-2 py-1.5 group-data-[state=collapsed]:hidden">
+									<span className="size-1.5 shrink-0 rounded-full bg-chart-2" />
+									<div className="min-w-0 flex-1">
+										<p className="truncate text-[10px] font-medium">
+											prod-primary.cluster
+										</p>
+										<p className="text-[9px] text-muted-foreground">
+											PostgreSQL 16
+										</p>
+									</div>
+								</div>
+							</SidebarHeader>
 
-					<SidebarContent className="mt-1">
-						{navSections.map((section) => (
-							<SidebarGroup key={section.label}>
-								<SidebarGroupLabel>{section.label}</SidebarGroupLabel>
-								<SidebarGroupContent>
-									<SidebarMenu>
-										{section.items.map((item) => (
-											<SidebarMenuItem key={item.label}>
-												<SidebarMenuButton
-													isActive={activeItem.label === item.label}
-													tooltip={item.label}
-													render={<Link to={item.to} />}
-												>
-													<HugeiconsIcon
-														icon={item.icon}
-														size={15}
-														strokeWidth={2}
-													/>
-													<span>{item.label}</span>
-													{"badge" in item && item.badge ? (
-														<Badge
-															variant="destructive"
-															className="ml-auto h-4 min-w-4 px-1 text-[9px] group-data-[collapsible=icon]:hidden"
-														>
-															{item.badge}
-														</Badge>
-													) : null}
-												</SidebarMenuButton>
-											</SidebarMenuItem>
-										))}
-									</SidebarMenu>
-								</SidebarGroupContent>
-							</SidebarGroup>
-						))}
-					</SidebarContent>
+							<ScrollArea className="overflow-auto">
+								<SidebarContent className="mt-1">
+									{navSections.map((section) => (
+										<SidebarGroup key={section.label}>
+											<SidebarGroupLabel>{section.label}</SidebarGroupLabel>
+											<SidebarGroupContent>
+												<SidebarMenu className="gap-2">
+													{section.items.map((item) => (
+														<SidebarMenuItem key={item.label}>
+															<SidebarMenuButton
+																size="sm"
+																isActive={activeItem.label === item.label}
+																tooltip={item.label}
+																render={<Link to={item.to} />}
+															>
+																<HugeiconsIcon
+																	icon={item.icon}
+																	strokeWidth={2}
+																/>
+																<span>{item.label}</span>
+																{"badge" in item && item.badge ? (
+																	<Badge
+																		variant="destructive"
+																		className="ml-auto h-4 min-w-4 px-1 text-[9px] group-data-[collapsible=icon]:hidden"
+																	>
+																		{item.badge}
+																	</Badge>
+																) : null}
+															</SidebarMenuButton>
+														</SidebarMenuItem>
+													))}
+												</SidebarMenu>
+											</SidebarGroupContent>
+										</SidebarGroup>
+									))}
+								</SidebarContent>
+							</ScrollArea>
+						</span>
 
-					<SidebarFooter>
-						<Separator className="bg-sidebar-border" />
-						<div className="flex items-center gap-2 px-2 py-1">
-							<div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary text-xs font-semibold">
-								A
+						<SidebarFooter>
+							<Separator className="bg-sidebar-border" />
+							<div className="flex items-center gap-2">
+								<div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary text-xs font-semibold">
+									A
+								</div>
+								<div className="min-w-0 flex-1 group-data-[state=collapsed]:hidden">
+									<p className="text-[10px] font-medium">Admin</p>
+									<p className="text-[9px] text-muted-foreground">
+										admin@pgdash.io
+									</p>
+								</div>
+								<Button
+									variant="ghost"
+									size="icon-xs"
+									className="shrink-0 group-data-[state=collapsed]:hidden"
+								>
+									<HugeiconsIcon
+										icon={Settings01Icon}
+										size={12}
+										strokeWidth={2}
+									/>
+								</Button>
 							</div>
-							<div className="min-w-0 flex-1 group-data-[state=collapsed]:hidden">
-								<p className="text-[10px] font-medium">Admin</p>
-								<p className="text-[9px] text-muted-foreground">
-									admin@pgdash.io
-								</p>
-							</div>
-							<Button
-								variant="ghost"
-								size="icon-xs"
-								className="shrink-0 group-data-[state=collapsed]:hidden"
-							>
-								<HugeiconsIcon
-									icon={Settings01Icon}
-									size={12}
-									strokeWidth={2}
-								/>
-							</Button>
-						</div>
-					</SidebarFooter>
+						</SidebarFooter>
+					</div>
 				</Sidebar>
 
 				{/* ── Main Content ── */}
@@ -206,7 +217,6 @@ function AppLayout() {
 					{/* ── Top Header ── */}
 					<header className="flex shrink-0 items-center gap-3 border-b border-border bg-background/95 px-4 py-2.5 backdrop-blur">
 						<SidebarTrigger className="shrink-0" />
-						<Separator orientation="vertical" className="h-4" />
 
 						{/* Breadcrumb */}
 						<div className="flex items-center gap-1.5 text-xs text-muted-foreground">
@@ -245,7 +255,7 @@ function AppLayout() {
 							{/* Alerts badge */}
 							<Button variant="ghost" size="icon-sm" className="relative">
 								<HugeiconsIcon icon={Alert01Icon} size={15} strokeWidth={2} />
-								<span className="absolute -right-0.5 -top-0.5 flex size-3.5 items-center justify-center rounded-full bg-destructive text-[8px] font-bold text-white">
+								<span className="absolute -right-0.5 -top-0.5 flex size-3.5 items-center justify-center rounded-full bg-destructive text-[8px] font-bold text-destructive-foreground">
 									3
 								</span>
 							</Button>
@@ -253,6 +263,9 @@ function AppLayout() {
 							<Button variant="ghost" size="icon-sm">
 								<HugeiconsIcon icon={RefreshIcon} size={15} strokeWidth={2} />
 							</Button>
+
+							{/* Theme switcher */}
+							<ThemeToggle />
 
 							<Button variant="ghost" size="icon-sm">
 								<HugeiconsIcon
