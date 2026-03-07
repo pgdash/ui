@@ -12,8 +12,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "cn": "bun x shadcn@latest add",
-    "lint": "biome lint ./src/* --staged",
-    "fmt": "biome format ./src/* --write --staged",
+    "lint": "biome lint ./src/*",
+    "fmt": "biome format ./src/* --write",
     "prepare": "husky"
   },
   "dependencies": {

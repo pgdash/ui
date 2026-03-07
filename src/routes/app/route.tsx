@@ -4,6 +4,7 @@ import {
 	Alert01Icon,
 	ArrowDataTransferHorizontalIcon,
 	ArrowRight01Icon,
+	ComputerTerminalIcon,
 	Database01Icon,
 	DatabaseSettingIcon,
 	FolderLibraryIcon,
@@ -16,13 +17,12 @@ import {
 	SparklesIcon,
 	TableIcon,
 	UserGroupIcon,
-	ComputerTerminalIcon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
+	createFileRoute,
 	Link,
 	Outlet,
-	createFileRoute,
 	useRouterState,
 } from "@tanstack/react-router"
 

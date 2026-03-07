@@ -1,2 +1,2 @@
-bun lint
-bun fmt
+bun biome lint ./src/* --staged
+bun biome format ./src/* --staged
