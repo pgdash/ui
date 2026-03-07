@@ -1,18 +1,18 @@
-import { TanStackDevtools } from "@tanstack/react-devtools";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
-import { createRootRoute, Outlet } from "@tanstack/react-router";
-import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { TanStackDevtools } from "@tanstack/react-devtools"
+import { QueryClientProvider } from "@tanstack/react-query"
+import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools"
+import { createRootRoute, Outlet } from "@tanstack/react-router"
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools"
 
-import "@/styles/index.css";
-import { TooltipProvider } from "#/components/ui/tooltip";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
-import { queryClient } from "@/lib/query/query-client";
+import "@/styles/index.css"
+import { TooltipProvider } from "#/components/ui/tooltip"
+import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/sonner"
+import { queryClient } from "@/lib/query/query-client"
 
 export const Route = createRootRoute({
 	component: RootComponent,
-});
+})
 
 function RootComponent() {
 	return (
@@ -41,5 +41,5 @@ function RootComponent() {
 				]}
 			/>
 		</>
-	);
+	)
 }
