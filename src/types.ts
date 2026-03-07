@@ -1,20 +1,22 @@
 type Column = {
-	name: string;
-	constraints: Constraint[];
-	nullable: boolean;
-	default: string;
-};
+	name: string
+	constraints: Constraint[]
+	nullable: boolean
+	default: string
+}
 
-type Constraint = {};
+type Constraint = {
+	name: string
+}
 type Relation = {
-	tableName: string;
+	tableName: string
 	mappings: {
-		fromColumnName: string;
-		toColumnName: string;
-	};
-};
-type Table = {
-	Name: string;
-	Columns: Column[];
-	relations: Relation[];
-};
+		fromColumnName: string
+		toColumnName: string
+	}
+}
+export type Table = {
+	Name: string
+	Columns: Column[]
+	relations: Relation[]
+}
