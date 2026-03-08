@@ -7,7 +7,11 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"includes": ["**/*.ts*", "!!*/*gen*"]
+		"includes": [
+			"**/*.ts*",
+			"!!*/*gen*",
+			"!!src/lib/client"
+		]
 	},
 	"formatter": {
 		"enabled": true,

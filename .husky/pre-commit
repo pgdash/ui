@@ -1,2 +1,2 @@
 bun biome lint ./src/* --staged
-bun biome format ./src/* --staged
+bun biome format ./src/* --write --staged
