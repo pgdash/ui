@@ -1,2 +1,3 @@
-bun biome lint ./src/* --staged
+bun biome lint ./src/* --staged --diagnostic-level=warn
 bun biome format ./src/* --write --staged
+
