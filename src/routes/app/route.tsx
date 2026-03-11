@@ -28,6 +28,15 @@ import {
 import ThemeToggle from "@/components/ThemeToggle"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuGroup,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import {
@@ -132,17 +141,61 @@ function AppLayout() {
 								<Separator className="mt-3 bg-sidebar-border" />
 
 								{/* DB connection pill */}
-								<div className="mt-2 flex items-center gap-2 rounded-md bg-muted/40 px-2 py-1.5 group-data-[state=collapsed]:hidden">
-									<span className="size-1.5 shrink-0 rounded-full bg-chart-2" />
-									<div className="min-w-0 flex-1">
-										<p className="truncate text-[10px] font-medium">
-											prod-primary.cluster
-										</p>
-										<p className="text-[9px] text-muted-foreground">
-											PostgreSQL 16
-										</p>
-									</div>
-								</div>
+								<DropdownMenu>
+									<DropdownMenuTrigger className="mt-2 flex w-full items-center gap-2 rounded-md bg-muted/40 px-2 py-1.5 text-left outline-none hover:bg-muted/60 focus:bg-muted/60 focus:ring-1 focus:ring-ring group-data-[state=collapsed]:hidden transition">
+										<span className="size-1.5 shrink-0 rounded-full bg-chart-2" />
+										<div className="min-w-0 flex-1">
+											<p className="truncate text-[10px] font-medium">
+												prod-primary.cluster
+											</p>
+											<p className="text-[9px] text-muted-foreground">
+												PostgreSQL 16
+											</p>
+										</div>
+										<HugeiconsIcon
+											icon={MoreVerticalIcon}
+											size={12}
+											className="text-muted-foreground"
+										/>
+									</DropdownMenuTrigger>
+									<DropdownMenuContent className="w-56" align="start">
+										<DropdownMenuGroup>
+											<DropdownMenuLabel className="text-xs">
+												Postgres Instances
+											</DropdownMenuLabel>
+											<DropdownMenuSeparator />
+											<DropdownMenuItem className="gap-2 text-xs">
+												<span className="size-1.5 shrink-0 rounded-full bg-chart-2" />
+												<div className="flex flex-col">
+													<span className="font-medium">
+														prod-primary.cluster
+													</span>
+													<span className="text-[9px] text-muted-foreground">
+														PostgreSQL 16
+													</span>
+												</div>
+											</DropdownMenuItem>
+											<DropdownMenuItem className="gap-2 text-xs">
+												<span className="size-1.5 shrink-0 rounded-full bg-muted-foreground" />
+												<div className="flex flex-col">
+													<span className="font-medium">staging.cluster</span>
+													<span className="text-[9px] text-muted-foreground">
+														PostgreSQL 15
+													</span>
+												</div>
+											</DropdownMenuItem>
+											<DropdownMenuItem className="gap-2 text-xs">
+												<span className="size-1.5 shrink-0 rounded-full bg-muted-foreground" />
+												<div className="flex flex-col">
+													<span className="font-medium">dev.local</span>
+													<span className="text-[9px] text-muted-foreground">
+														PostgreSQL 16
+													</span>
+												</div>
+											</DropdownMenuItem>
+										</DropdownMenuGroup>
+									</DropdownMenuContent>
+								</DropdownMenu>
 							</SidebarHeader>
 
 							<ScrollArea className="overflow-auto">

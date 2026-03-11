@@ -18,7 +18,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { cn } from "@/lib/utils"
 import type { PGDatabase, PGSchema, PGTable } from "@/types/database"
 
-export const Route = createFileRoute("/app/databases/$dbId/schema")({
+export const Route = createFileRoute("/app/tables/$dbId/schema")({
 	component: SchemaViewer,
 })
 
@@ -288,7 +288,6 @@ function SchemaDetail({ schema }: { schema: PGSchema }) {
 	)
 }
 
-// biome-ignore lint/suspicious/noExplicitAny: wip
 function MetricCard({
 	title,
 	count,
@@ -296,6 +295,7 @@ function MetricCard({
 }: {
 	title: string
 	count: number
+	// biome-ignore lint/suspicious/noExplicitAny: wip
 	icon: any
 }) {
 	return (

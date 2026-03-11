@@ -14,7 +14,7 @@ import { Route as AppRouteRouteImport } from './routes/app/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app/index'
 import { Route as AppDatabasesNewRouteImport } from './routes/app/databases/new'
-import { Route as AppDatabasesDbIdSchemaRouteImport } from './routes/app/databases/$dbId.schema'
+import { Route as AppTablesDbIdSchemaRouteImport } from './routes/app/tables/$dbId.schema'
 
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
@@ -41,9 +41,9 @@ const AppDatabasesNewRoute = AppDatabasesNewRouteImport.update({
   path: '/databases/new',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppDatabasesDbIdSchemaRoute = AppDatabasesDbIdSchemaRouteImport.update({
-  id: '/databases/$dbId/schema',
-  path: '/databases/$dbId/schema',
+const AppTablesDbIdSchemaRoute = AppTablesDbIdSchemaRouteImport.update({
+  id: '/tables/$dbId/schema',
+  path: '/tables/$dbId/schema',
   getParentRoute: () => AppRouteRoute,
 } as any)
 
@@ -53,14 +53,14 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/app/': typeof AppIndexRoute
   '/app/databases/new': typeof AppDatabasesNewRoute
-  '/app/databases/$dbId/schema': typeof AppDatabasesDbIdSchemaRoute
+  '/app/tables/$dbId/schema': typeof AppTablesDbIdSchemaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/app': typeof AppIndexRoute
   '/app/databases/new': typeof AppDatabasesNewRoute
-  '/app/databases/$dbId/schema': typeof AppDatabasesDbIdSchemaRoute
+  '/app/tables/$dbId/schema': typeof AppTablesDbIdSchemaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -69,7 +69,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/app/': typeof AppIndexRoute
   '/app/databases/new': typeof AppDatabasesNewRoute
-  '/app/databases/$dbId/schema': typeof AppDatabasesDbIdSchemaRoute
+  '/app/tables/$dbId/schema': typeof AppTablesDbIdSchemaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -79,14 +79,14 @@ export interface FileRouteTypes {
     | '/about'
     | '/app/'
     | '/app/databases/new'
-    | '/app/databases/$dbId/schema'
+    | '/app/tables/$dbId/schema'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/app'
     | '/app/databases/new'
-    | '/app/databases/$dbId/schema'
+    | '/app/tables/$dbId/schema'
   id:
     | '__root__'
     | '/'
@@ -94,7 +94,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/app/'
     | '/app/databases/new'
-    | '/app/databases/$dbId/schema'
+    | '/app/tables/$dbId/schema'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -140,11 +140,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDatabasesNewRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/app/databases/$dbId/schema': {
-      id: '/app/databases/$dbId/schema'
-      path: '/databases/$dbId/schema'
-      fullPath: '/app/databases/$dbId/schema'
-      preLoaderRoute: typeof AppDatabasesDbIdSchemaRouteImport
+    '/app/tables/$dbId/schema': {
+      id: '/app/tables/$dbId/schema'
+      path: '/tables/$dbId/schema'
+      fullPath: '/app/tables/$dbId/schema'
+      preLoaderRoute: typeof AppTablesDbIdSchemaRouteImport
       parentRoute: typeof AppRouteRoute
     }
   }
@@ -153,13 +153,13 @@ declare module '@tanstack/react-router' {
 interface AppRouteRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
   AppDatabasesNewRoute: typeof AppDatabasesNewRoute
-  AppDatabasesDbIdSchemaRoute: typeof AppDatabasesDbIdSchemaRoute
+  AppTablesDbIdSchemaRoute: typeof AppTablesDbIdSchemaRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppIndexRoute: AppIndexRoute,
   AppDatabasesNewRoute: AppDatabasesNewRoute,
-  AppDatabasesDbIdSchemaRoute: AppDatabasesDbIdSchemaRoute,
+  AppTablesDbIdSchemaRoute: AppTablesDbIdSchemaRoute,
 }
 
 const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
