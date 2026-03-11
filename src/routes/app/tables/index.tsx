@@ -18,7 +18,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { cn } from "@/lib/utils"
 import type { PGDatabase, PGSchema, PGTable } from "@/types/database"
 
-export const Route = createFileRoute("/app/tables/$dbId/schema")({
+export const Route = createFileRoute("/app/tables/")({
 	component: SchemaViewer,
 })
 
@@ -633,7 +633,7 @@ function FunctionDetail({ fn }: { fn: any }) {
 					<CardContent className="p-0">
 						<div className="divide-y divide-border/50">
 							{fn.argument_types.length > 0 ? (
-								fn.argument_types.map((arg: string, i: number) => (
+								fn.argument_types.map((arg: string) => (
 									<div key={arg} className="px-4 py-2 font-mono text-xs">
 										{arg}
 									</div>
