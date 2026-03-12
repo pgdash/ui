@@ -14,6 +14,7 @@ import { Route as AppRouteRouteImport } from './routes/app/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app/index'
 import { Route as AppTablesIndexRouteImport } from './routes/app/tables/index'
+import { Route as AppDataIndexRouteImport } from './routes/app/data/index'
 import { Route as AppDatabasesNewRouteImport } from './routes/app/databases/new'
 
 const AboutRoute = AboutRouteImport.update({
@@ -41,6 +42,11 @@ const AppTablesIndexRoute = AppTablesIndexRouteImport.update({
   path: '/tables/',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppDataIndexRoute = AppDataIndexRouteImport.update({
+  id: '/data/',
+  path: '/data/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppDatabasesNewRoute = AppDatabasesNewRouteImport.update({
   id: '/databases/new',
   path: '/databases/new',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/app/': typeof AppIndexRoute
   '/app/databases/new': typeof AppDatabasesNewRoute
+  '/app/data/': typeof AppDataIndexRoute
   '/app/tables/': typeof AppTablesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/app': typeof AppIndexRoute
   '/app/databases/new': typeof AppDatabasesNewRoute
+  '/app/data': typeof AppDataIndexRoute
   '/app/tables': typeof AppTablesIndexRoute
 }
 export interface FileRoutesById {
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/app/': typeof AppIndexRoute
   '/app/databases/new': typeof AppDatabasesNewRoute
+  '/app/data/': typeof AppDataIndexRoute
   '/app/tables/': typeof AppTablesIndexRoute
 }
 export interface FileRouteTypes {
@@ -79,9 +88,16 @@ export interface FileRouteTypes {
     | '/about'
     | '/app/'
     | '/app/databases/new'
+    | '/app/data/'
     | '/app/tables/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/app' | '/app/databases/new' | '/app/tables'
+  to:
+    | '/'
+    | '/about'
+    | '/app'
+    | '/app/databases/new'
+    | '/app/data'
+    | '/app/tables'
   id:
     | '__root__'
     | '/'
@@ -89,6 +105,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/app/'
     | '/app/databases/new'
+    | '/app/data/'
     | '/app/tables/'
   fileRoutesById: FileRoutesById
 }
@@ -135,6 +152,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppTablesIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/app/data/': {
+      id: '/app/data/'
+      path: '/data'
+      fullPath: '/app/data/'
+      preLoaderRoute: typeof AppDataIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/app/databases/new': {
       id: '/app/databases/new'
       path: '/databases/new'
@@ -148,12 +172,14 @@ declare module '@tanstack/react-router' {
 interface AppRouteRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
   AppDatabasesNewRoute: typeof AppDatabasesNewRoute
+  AppDataIndexRoute: typeof AppDataIndexRoute
   AppTablesIndexRoute: typeof AppTablesIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppIndexRoute: AppIndexRoute,
   AppDatabasesNewRoute: AppDatabasesNewRoute,
+  AppDataIndexRoute: AppDataIndexRoute,
   AppTablesIndexRoute: AppTablesIndexRoute,
 }
 

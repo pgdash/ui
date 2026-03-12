@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.5",
+    "@faker-js/faker": "^10.3.0",
     "@hey-api/openapi-ts": "^0.92.4",
     "@tailwindcss/typography": "^0.5.16",
     "@tanstack/devtools-vite": "^0.3.11",
