@@ -21,6 +21,7 @@ export type {
 	ScanDatabaseResponse,
 	ScanDatabaseResponses,
 	ScanRequest,
+	ScanResponse,
 	Schema,
 	Sequence,
 	Table,
